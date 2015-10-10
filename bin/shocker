@@ -85,7 +85,7 @@
 
             # variable(s)
             src="$application"
-            dir=$( $cd "$src/.." && $pwd -P )
+            dir="$src"
             dst=$( $realpath $archive_export )
             nam=$( $basename $application )
 
@@ -99,7 +99,7 @@
 
             # archive
             $cd "$dir"
-            $tar -zcvf "$dst" "$nam"
+            $tar -zcvf "$dst" *
             display_msg ''
 
             # return
