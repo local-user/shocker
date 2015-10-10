@@ -25,19 +25,19 @@ shocker example usage:
 
 Repository contains files required to build application.
 
-- app
-- app/{application}/about
-- app/{application}/about/README.md
-- app/{application}
-- app/{application}/bin
-- app/{application}/bin/{task}
-- app/{application}/docker
-- app/{application}/docker/{docker-resources}
 - bin
 - bin/shocker
 - extra
 - extra/os
 - extra/os/{build-script}
+- src
+- src/{application}/about
+- src/{application}/about/README.md
+- src/{application}
+- src/{application}/bin
+- src/{application}/bin/{task}
+- src/{application}/docker
+- src/{application}/docker/{docker-resources}
 
 
 ####operating system(s)
