@@ -273,9 +273,9 @@
         function set_application () {
 
                      # find & set
-                     result_count=$( $find "$script_repo_app" -name *"$1"* -type d | wc -l )
+                     result_count=$( $find "$script_repo_app" -maxdepth 1 -name *"$1"* -type d | wc -l )
             if   [ "$result_count" -eq 1 ]; then
-                application=$( $find "$script_repo_app" -name *"$1"* -type d )
+                application=$( $find "$script_repo_app" -maxdepth 1 -name *"$1"* -type d )
             elif [ "$result_count" -gt 1 ]; then
                 display_error "Multiple applications found matching '$1'"
                 $exit 2
