@@ -37,11 +37,11 @@
     #
     script=$0
     script_config="$HOME/.config/shocker"
-    script_config_app="$script_config/app"
+    script_config_app="$script_config/run"
     script_name='shocker'
     script_path=$( dirname $script )
     script_repo=$( $cd "$script_path/.." && $pwd -P )
-    script_repo_app="$script_repo/app"
+    script_repo_app="$script_repo/src"
 
 
     #
