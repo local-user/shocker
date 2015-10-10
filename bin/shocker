@@ -1,0 +1,423 @@
+#!/bin/bash
+#
+#
+#         .__                   __
+#    _____|  |__   ____   ____ |  | __ ___________
+#   /  ___/  |  \ /  _ \_/ ___\|  |/ // __ \_  __ \
+#   \___ \|   Y  (  <_> )  \___|    <\  ___/|  | \/
+#  /____  >___|  /\____/ \___  >__|_ \\___  >__|
+#       \/     \/            \/     \/    \/
+#                         --- version 0.3c ---
+#
+#
+
+
+
+    #
+    #   command(s)
+    #
+    basename='basename'
+    cd='cd'
+    chmod='chmod'
+    dirname='dirname'
+    echo='echo'
+    exit='exit'
+    find='find'
+    mkdir='mkdir'
+    pwd='pwd'
+    realpath='realpath'
+    rm='rm'
+    tail='tail'
+    tar='tar'
+    tree='tree'
+
+
+    #
+    #   default(s)
+    #
+    script=$0
+    script_config="$HOME/.config/shocker"
+    script_config_app="$script_config/app"
+    script_name='shocker'
+    script_path=$( dirname $script )
+    script_repo=$( $cd "$script_path/.." && $pwd -P )
+    script_repo_app="$script_repo/app"
+
+
+    #
+    #   global(s)
+    #
+    application=''
+    archive=''
+    archive_export=''
+    task=''
+
+
+    #
+    #   function(s)
+    #
+    #
+
+        #
+        #   cmd_exec - exec application task
+        #
+        function cmd_exec() {
+
+            # ? task
+            [ -z "$task" ]                          && \
+                display_error "Task not specified"  && \
+                $exit 2
+
+            # exec
+            $task
+
+        }
+
+        #
+        #   cmd_export - export app (.tar.gz)
+        #
+        function cmd_export() {
+
+            # ? application
+            [ -z "$application" ]                           && \
+                display_error "Application not specified"   && \
+                $exit 2
+
+            # variable(s)
+            src="$application"
+            dir=$( $cd "$src/.." && $pwd -P )
+            dst=$( $realpath $archive_export )
+            nam=$( $basename $application )
+
+            # about
+            display_msg ''
+            display_msg "Application name:     $nam"
+            display_msg "Application path:     $src"
+            display_msg ''
+            display_msg "Export Archive:       $dst"
+            display_msg ''
+
+            # archive
+            $cd "$dir"
+            $tar -zcvf "$dst" "$nam"
+            display_msg ''
+
+            # return
+            return 0
+
+        }
+
+        #
+        #   cmd_import - import app (.tar.gz)
+        #
+        function cmd_import() {
+
+            # ? archive
+            [ -z "$archive" ]                               && \
+                display_error "Archive not specified"       && \
+                $exit 2
+
+            # variable(s)
+            src="$archive"
+            dst="$script_repo_app/`basename $archive`"
+
+            # ? exists
+            [ -e "$dst" ]                                   && \
+                display_error "Application already exists"  && \
+                $exit 2
+
+            # folder
+            $mkdir "$dst"
+            [ ! -e "$dst" ]                                         && \
+                display_error "Unable to write application folder"  && \
+                $exit 2
+
+
+            # about
+            display_msg ''
+            display_msg "Application path:      $dst"
+            display_msg ''
+            display_msg "Import archive:        $src"
+            display_msg ''
+
+            # extract
+            $tar -xvzf "$src" -C "$dst"
+            display_msg ''
+
+            # permission(s)
+            [ -d "$dst/bin" ]               && \
+                $chmod +x "$dst/bin/"*
+
+            # return
+            return 0
+
+        }
+
+        #
+        #   cmd_list - tree app folder
+        #
+        function cmd_list() {
+            display_msg '|'
+            $echo "| $script_name"
+            $tree -C -l --noreport "$script_repo_app" | \
+                $tail -n +2
+            display_msg ''
+            return 0
+        }
+        # reference: /usr/bin/pass, aka 'password-store'
+
+        #
+        #   cmd_remove - remove application
+        #
+        function cmd_remove() {
+
+            # about
+            display_msg ''
+            display_msg "Application path:      $application"
+            display_msg ''
+
+            # ? application
+            [ -z "$application" ]                           && \
+                display_error "Application not specified"   && \
+                $exit 2
+
+            # remove
+            $rm -r --verbose "$application"
+            display_msg ''
+
+            # return
+            return 0
+
+        }
+
+        #
+        #   display_msg - display a message
+        #
+        function display_msg() {
+            $echo "$1"
+            return 0
+        }
+
+        #
+        #   display_error - display a error message
+        #
+        function display_error() {
+            $echo "Error: $1"
+            return 0
+        }
+
+        #
+        #   display_help - display a help message
+        #
+        function display_help() {
+            $echo    ""
+            $echo    ""
+            $echo -e "\t$script_name: $script_name [exec|export|import|list|remove] option"
+            $echo    ""
+            $echo    ""
+            $echo -e "\t\tOverview:"
+            $echo -e "\t\t\t Shell + Docker = Shocker!"
+            $echo    ""
+            $echo    ""
+            $echo -e "\t\tFeature(s):"
+            $echo -e "\t\t\t-- exec application task"
+            $echo -e "\t\t\t-- export application (.tar.gz)"
+            $echo -e "\t\t\t-- import application (.tar.gz)"
+            $echo -e "\t\t\t-- list available application(s)"
+            $echo -e "\t\t\t-- remove an application"
+            $echo    ""
+            $echo    ""
+            $echo -e "\t\tExample Usage:"
+            $echo -e "\t\t\t"
+            $echo -e "\t\t\t#"
+            $echo -e "\t\t\t# Application:  'template'"
+            $echo -e "\t\t\t# Task:         'start'"
+            $echo -e "\t\t\t# Path:         'path/'"
+            $echo -e "\t\t\t#"
+            $echo -e "\t\t\t"
+            $echo -e "\t\t\t# Execute application task."
+            $echo -e "\t\t\t-$ $script_name exec template start"
+            $echo -e "\t\t\t"
+            $echo -e "\t\t\t# Export application."
+            $echo -e "\t\t\t-$ $script_name export template path/template.tar.gz"
+            $echo -e "\t\t\t"
+            $echo -e "\t\t\t# Import application."
+            $echo -e "\t\t\t-$ $script_name import path/template.tar.gz"
+            $echo -e "\t\t\t"
+            $echo -e "\t\t\t# List application(s)."
+            $echo -e "\t\t\t-$ $script_name list"
+            $echo -e "\t\t\t"
+            $echo -e "\t\t\t# Remove application(s)."
+            $echo -e "\t\t\t-$ $script_name remove template"
+            $echo    ""
+            $echo    ""
+            return 0
+        }
+
+        #
+        #   display_usage - display usage
+        #
+        function display_usage() {
+            $echo "$script_name: $script_name [exec|export|import|list|remove] option"
+            return 0
+        }
+
+        #
+        #   set_application - set application
+        #
+        function set_application () {
+
+                     # find & set
+                     result_count=$( $find "$script_repo_app" -name *"$1"* -type d | wc -l )
+            if   [ "$result_count" -eq 1 ]; then
+                application=$( $find "$script_repo_app" -name *"$1"* -type d )
+            elif [ "$result_count" -gt 1 ]; then
+                display_error "Multiple applications found matching '$1'"
+                $exit 2
+            else
+                display_error "No applications found matching '$1'"
+                $exit 2
+            fi
+
+            # return
+            return 0
+
+        }
+
+        #
+        #   set_archive - set archive
+        #
+        function set_archive() {
+
+            # ? exists
+            [ ! -e "$1" ]                               && \
+                display_error "Archive '$1' not found"  && \
+                $exit 2
+
+            # set
+            archive="$1"
+
+            # return
+            return 0
+
+        }
+
+        #
+        #   set_archive - set archive export
+        #
+        function set_archive_export() {
+
+            # ? writeable
+            touch "$1"
+            [ ! -w "$1" ]                                               && \
+                display_error "Export archive '$1' is not writeable"    && \
+                $exit 2
+            rm "$1"
+
+            # set
+            archive_export="$1"
+
+            # return
+            return 0
+
+        }
+
+        #
+        #   set_task - set task
+        #
+        function set_task () {
+
+            # ? application
+            [ -z "$application" ]                           && \
+                display_error "Application not specified"   && \
+                $exit 2
+
+            # ? task
+            [ ! -f "$application/bin/$1" ]                  && \
+                display_error "Task not found"              && \
+                $exit 2
+
+            # set
+            task="$application/bin/$1"
+
+            # return
+            return 0
+
+        }
+
+    #   function(s)
+    #   -- end
+    #
+
+
+    #
+    #   logic
+    #
+
+        # create -- config -- app
+        if [ ! -d "$script_config_app" ]; then
+            $mkdir -p "$script_config_app"
+            if [ $? -ne 0 ]; then
+                $exit 2
+            fi
+        fi
+
+        # check -- no arg(s)
+        if [ $# -eq 0 ]; then
+            display_usage
+            $exit 2
+        fi
+
+        # function
+        case "$1" in
+            exec)
+                shift
+                set_application "$1"
+                shift
+                set_task "$1"
+                shift
+                cmd_exec
+                ;;
+            export|-e)
+                shift
+                set_application "$1"
+                shift
+                set_archive_export "$1"
+                shift
+                cmd_export
+                ;;
+            help|-h)
+                shift
+                display_help
+                ;;
+            import|-i)
+                shift
+                set_archive "$1"
+                shift
+                cmd_import
+                ;;
+            list|-l)
+                shift
+                cmd_list
+                ;;
+            remove|-r)
+                shift
+                set_application "$1"
+                shift
+                cmd_remove
+                ;;
+            *)
+                display_usage
+                ;;
+        esac
+
+    #
+    #   logic
+    #   --end
+    #
+
+
+
+#
+# -- <(o_^)< -- pew pew
+#
