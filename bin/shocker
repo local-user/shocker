@@ -59,21 +59,6 @@
     #
 
         #
-        #   cmd_shock - shock application task
-        #
-        function cmd_shock() {
-
-            # ? task
-            [ -z "$task" ]                          && \
-                display_error "Task not specified"  && \
-                $exit 2
-
-            # shock
-            $task
-
-        }
-
-        #
         #   cmd_export - export app (.tar.gz)
         #
         function cmd_export() {
@@ -192,6 +177,21 @@
 
             # return
             return 0
+
+        }
+
+        #
+        #   cmd_shock - shock application task
+        #
+        function cmd_shock() {
+
+            # ? task
+            [ -z "$task" ]                          && \
+                display_error "Task not specified"  && \
+                $exit 2
+
+            # shock
+            $task
 
         }
 
