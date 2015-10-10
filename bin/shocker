@@ -161,7 +161,7 @@
             # list
             display_msg '|'
             $echo "| $script_name"
-            $tree -C -l --noreport "$script_repo_app" | \
+            $tree --dirsfirst -C -l --noreport "$script_repo_app" | \
                 $tail -n +2
             display_msg ''
 
