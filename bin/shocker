@@ -338,7 +338,6 @@
                 $exit 2
 
             # ? task
-            echo $1
             [ ! -f "$application/bin/$1" ]                              && \
                 display_error "Task '$application/bin/$1' not found"    && \
                 $exit 2
