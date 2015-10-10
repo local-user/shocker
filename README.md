@@ -10,7 +10,7 @@ shocker [export|import|list|remove|shock] option
 
 shocker example usage:
 
-- shocker export application /path/to/export.tar.gz
+- shocker export {application} /path/to/export.tar.gz
 - shocker import /path/to/application.tar.gz
 - shocker list
 - shocker remove {application}
