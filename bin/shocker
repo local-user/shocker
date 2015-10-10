@@ -59,16 +59,16 @@
     #
 
         #
-        #   cmd_exec - exec application task
+        #   cmd_shock - shock application task
         #
-        function cmd_exec() {
+        function cmd_shock() {
 
             # ? task
             [ -z "$task" ]                          && \
                 display_error "Task not specified"  && \
                 $exit 2
 
-            # exec
+            # shock
             $task
 
         }
@@ -100,7 +100,7 @@
             # archive
             $cd "$dir"
             $tar -zcvf "$dst" "$nam"
-            display_msg ''
+            displat y_msg ''
 
             # return
             return 0
@@ -212,7 +212,7 @@
         function display_help() {
             $echo    ""
             $echo    ""
-            $echo -e "\t$script_name: $script_name [exec|export|import|list|remove] option"
+            $echo -e "\t$script_name: $script_name [export|import|list|remove|shock] option"
             $echo    ""
             $echo    ""
             $echo -e "\t\tOverview:"
@@ -220,7 +220,7 @@
             $echo    ""
             $echo    ""
             $echo -e "\t\tFeature(s):"
-            $echo -e "\t\t\t-- exec application task"
+            $echo -e "\t\t\t-- shock application task"
             $echo -e "\t\t\t-- export application (.tar.gz)"
             $echo -e "\t\t\t-- import application (.tar.gz)"
             $echo -e "\t\t\t-- list available application(s)"
@@ -236,7 +236,7 @@
             $echo -e "\t\t\t#"
             $echo -e "\t\t\t"
             $echo -e "\t\t\t# Execute application task."
-            $echo -e "\t\t\t-$ $script_name exec template start"
+            $echo -e "\t\t\t-$ $script_name shock template start"
             $echo -e "\t\t\t"
             $echo -e "\t\t\t# Export application."
             $echo -e "\t\t\t-$ $script_name export template path/template.tar.gz"
@@ -258,7 +258,7 @@
         #   display_usage - display usage
         #
         function display_usage() {
-            $echo "$script_name: $script_name [exec|export|import|list|remove] option"
+            $echo "$script_name: $script_name [export|import|list|remove|shock] option"
             return 0
         }
 
@@ -370,13 +370,13 @@
 
         # function
         case "$1" in
-            exec)
+            shock)
                 shift
                 set_application "$1"
                 shift
                 set_task "$1"
                 shift
-                cmd_exec
+                cmd_shock
                 ;;
             export|-e)
                 shift
