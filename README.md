@@ -1,8 +1,10 @@
 #shocker
 ##shell + docker = shocker
 
+
 ###overview
 shell + docker = shocker, an easier way to share random app(s).
+
 
 ###usage
 
@@ -16,8 +18,8 @@ shocker example usage:
 - shocker remove {application}
 - shocker shock  {application} {task}
 
-###extra
 
+###extra
 
 #####repo
 
@@ -40,4 +42,5 @@ Repository contains files required to build application.
 
 ####operating system(s)
 - arch linux
+
 
