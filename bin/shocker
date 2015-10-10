@@ -190,6 +190,12 @@
                 display_error "Task not specified"  && \
                 $exit 2
 
+            # display
+            display_msg ''
+            display_msg "Application path:      $application"
+            display_msg "Task path:             $task"
+            display_msg ''
+
             # shock
             $task
 
