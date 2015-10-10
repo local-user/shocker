@@ -119,7 +119,7 @@
 
             # variable(s)
             src="$archive"
-            dst="$script_repo_app/`basename $archive`"
+            dst="$script_repo_app/`$basename $archive`"
 
             # ? exists
             [ -e "$dst" ]                                   && \
@@ -157,12 +157,17 @@
         #   cmd_list - tree app folder
         #
         function cmd_list() {
+
+            # list
             display_msg '|'
             $echo "| $script_name"
             $tree -C -l --noreport "$script_repo_app" | \
                 $tail -n +2
             display_msg ''
+
+            # return
             return 0
+
         }
         # reference: /usr/bin/pass, aka 'password-store'
 
