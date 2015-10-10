@@ -100,7 +100,7 @@
             # archive
             $cd "$dir"
             $tar -zcvf "$dst" "$nam"
-            displat y_msg ''
+            display_msg ''
 
             # return
             return 0
