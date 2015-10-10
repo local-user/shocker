@@ -23,20 +23,19 @@ shocker example usage:
 
 Repository contains files required to build application.
 
-- shocker/
-- shocker/app
-- shocker/app/{application}/about
-- shocker/app/{application}/about/README.md
-- shocker/app/{application}
-- shocker/app/{application}/bin
-- shocker/app/{application}/bin/{task}
-- shocker/app/{application}/docker
-- shocker/app/{application}/docker/{docker-resources}
-- shocker/bin
-- shocker/bin/shocker
-- shocker/extra
-- shocker/extra/os
-- shocker/extra/os/{build-script}
+- app
+- app/{application}/about
+- app/{application}/about/README.md
+- app/{application}
+- app/{application}/bin
+- app/{application}/bin/{task}
+- app/{application}/docker
+- app/{application}/docker/{docker-resources}
+- bin
+- bin/shocker
+- extra
+- extra/os
+- extra/os/{build-script}
 
 
 ####operating system(s)
