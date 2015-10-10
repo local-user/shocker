@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+#   [ shocker - docker - transmission/bin/remove ]
+#
+
+
+    # require - config
+    source `dirname $0`/../CONFIG.sh
+
+    # remove - image(s)
+    docker rmi -f "$docker_tag"
+
+
+#
+#   [ end ]
+#

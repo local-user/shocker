@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+#   [ shocker - docker - transmission/bin/build ]
+#
+
+
+    # require - CONFIG.sh
+    source `dirname $0`/../CONFIG.sh
+
+    # docker - build
+    docker build --no-cache=true --tag "$docker_tag" `dirname $0`/../docker
+
+
+#
+#   [ end ]
+#

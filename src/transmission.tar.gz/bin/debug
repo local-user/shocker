@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+#   [ shocker - docker - transmission/bin/debug ]
+#
+
+
+    # require - config
+    source `dirname $0`/../CONFIG.sh
+
+    # docker - start
+    docker run  -p 9091:9091 -p 51413:51413                 \
+                -v "$host_config":"$docker_config"          \
+                -v "$host_download":"$docker_download"      \
+                --rm                                        \
+                --name "$docker_name"                       \
+                "$docker_tag"                               \
+                --foreground                                \
+                $@
+
+
+#
+#   [ end ]
+#
