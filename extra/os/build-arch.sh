@@ -10,11 +10,11 @@
 #
 
 
+
     #
     #   Start?
     #
-#    read -p "Start Arch Build [y/n]: " choice
-choice=y
+    read -p "Start Arch Build [y/n]: " choice
     case "$choice" in 
         y|Y )
             echo "Build starting."
@@ -36,11 +36,11 @@ choice=y
     #   Set Hostname
     #
     read -p "Hostname: " hostname
-#    echo $hostname > /etc/hostname
-#    if [ $? -gt 0 ]; then
-#        echo "Error: Unable to write hostname."
-#        exit 2
-#    fi
+    echo $hostname > /etc/hostname
+    if [ $? -gt 0 ]; then
+        echo "Error: Unable to write hostname."
+        exit 2
+    fi
     echo ""
 
 
@@ -48,11 +48,15 @@ choice=y
     #   Base Package(s)
     #
     echo "Installing dependencies:"
-#    pacman -Syu --noconfirm docker git vim tree
-#    if [ $? -gt 0 ]; then
-#        echo "Error: Unable to install dependencies."
-#        exit 2
-#    fi
+    pacman -Syu --noconfirm docker git vim tree
+    if [ $? -gt 0 ]; then
+        echo "Error: Unable to install dependencies."
+        exit 2
+    fi
     echo ""
 
 
+
+#
+#   >.<
+#
