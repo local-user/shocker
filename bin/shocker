@@ -388,6 +388,15 @@
     #   logic
     #
 
+        # create -- config -- app
+        if [ ! -d "$script_config_app" ]; then
+            $mkdir -p "$script_config_app"
+            if [ $? -ne 0 ]; then
+                display_error "Unable to create '$script_config_app'"
+                $exit 2
+            fi
+        fi
+
         # create -- config -- run
         if [ ! -d "$script_config_run" ]; then
             $mkdir -p "$script_config_run"
