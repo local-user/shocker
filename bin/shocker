@@ -163,7 +163,7 @@
             # list
             display_msg '|'
             $echo "| $script_name"
-            $tree --dirsfirst -C -l --noreport "$script_config_app" | \
+            $tree --dirsfirst -C -l -L 4 --noreport "$script_config_app"    | \
                 $tail -n +2
             display_msg ''
 
