@@ -5,7 +5,7 @@
 
 
     # application
-    application_name='transmission'
+    application_name='transmission.tar.gz'
 
     # host
     host_config="$HOME/.config/shocker/run/$application_name/config"
