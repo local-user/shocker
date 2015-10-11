@@ -222,6 +222,12 @@
             # shock
             $task
 
+            # display
+            display_msg ''
+
+            # return
+            return 0
+
         }
 
         #
