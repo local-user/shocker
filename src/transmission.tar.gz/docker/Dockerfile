@@ -5,7 +5,7 @@
 
 
     # os
-    FROM ubuntu:trusty
+    FROM ubuntu:vivid
 
     # maintainer
     MAINTAINER shocker <https://github.com/local-user/shocker>
@@ -14,7 +14,7 @@
     RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
     # multiverse sources
-    RUN echo "deb http://archive.ubuntu.com/ubuntu trusty multiverse" >> /etc/apt/sources.list
+    RUN echo "deb http://archive.ubuntu.com/ubuntu vivid multiverse" >> /etc/apt/sources.list
 
     # update
     RUN apt-get update
