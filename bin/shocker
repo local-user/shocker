@@ -18,6 +18,7 @@
     #
     basename='basename'
     cd='cd'
+    cp='cp'
     chmod='chmod'
     dirname='dirname'
     echo='echo'
@@ -103,8 +104,9 @@
                 $exit 2
 
             # variable(s)
-            src="$archive"
-            dst="$script_repo_app/`$basename $archive`"
+            src="$archive"                                      # source
+            dst="$script_repo_app/`$basename $archive`"         # destination
+            cnf="$script_config_app/`$basename $archive`"       # config
 
             # ? exists
             [ -e "$dst" ]                                   && \
@@ -133,6 +135,19 @@
             [ -d "$dst/bin" ]               && \
                 $chmod +x "$dst/bin/"*
 
+            # config
+            if [ ! -d "$cnf" ]; then
+
+                # create
+                mkdir "$cnf"
+
+                # skeleton
+                [ -d "$dst/skel" ]                      && \
+                    $cp -r "$dst/skel" "$cnf/config"
+
+            fi
+
+            # return
             # return
             return 0
 
