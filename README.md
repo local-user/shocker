@@ -3,7 +3,7 @@
 
 
 ###overview
-shell + docker = shocker, an easier way to share random app(s).
+an easier way to share random app(s) using docker
 
 
 ###usage
@@ -12,8 +12,8 @@ shocker [export|import|list|remove|shock] option
 
 shocker example usage:
 
-- shocker export {application} /path/to/export.tar.gz
-- shocker import /path/to/application.tar.gz
+- shocker export {application} {/path/to/export.tar.gz}
+- shocker import {/path/to/application.tar.gz}
 - shocker list
 - shocker remove {application}
 - shocker shock  {application} {task}
