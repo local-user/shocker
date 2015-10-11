@@ -42,7 +42,7 @@
     script_name='shocker'
     script_path=$( dirname $script )
     script_repo=$( $cd "$script_path/.." && $pwd -P )
-    script_repo_app="$script_repo/src"
+    script_repo_app="$script_config/app"
 
 
     #
