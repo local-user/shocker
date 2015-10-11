@@ -56,6 +56,19 @@
     echo ""
 
 
+    #
+    #   Enable Docker
+    #
+    systemctl enable docker.service
+
+
+    #
+    #   Restart
+    #
+    echo ''
+    echo 'Finished. Restart required.'
+
+
 
 #
 #   >.<
