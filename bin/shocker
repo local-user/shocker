@@ -77,10 +77,11 @@
 
             # about
             display_msg ''
-            display_msg "Application name:     $nam"
-            display_msg "Application path:     $src"
+            display_msg "Application:           $nam"
+            display_msg 'Task:                  export'
             display_msg ''
-            display_msg "Export Archive:       $dst"
+            display_msg "Application path:      $src"
+            display_msg "Archive path:          $dst"
             display_msg ''
 
             # archive
@@ -119,12 +120,14 @@
                 display_error "Unable to write application folder"  && \
                 $exit 2
 
-
             # about
             display_msg ''
-            display_msg "Application path:      $dst"
+            display_msg "Application:           `$basename $dst`"
+            display_msg "Task:                  import"
             display_msg ''
-            display_msg "Import archive:        $src"
+            display_msg "Archive path:          $src"
+            display_msg "Config path:           $cnf"
+            display_msg "Destination path:      $dst"
             display_msg ''
 
             # extract
@@ -143,11 +146,10 @@
 
                 # skeleton
                 [ -d "$dst/skel" ]                      && \
-                    $cp -r "$dst/skel" "$cnf/config"
+                    $cp -r "$dst/skel/"* "$cnf"
 
             fi
 
-            # return
             # return
             return 0
 
@@ -178,6 +180,9 @@
 
             # about
             display_msg ''
+            display_msg "Application:           `$basename $application`"
+            display_msg "Task:                  remove"
+            display_msg ''
             display_msg "Application path:      $application"
             display_msg ''
 
@@ -206,6 +211,9 @@
                 $exit 2
 
             # display
+            display_msg ''
+            display_msg "Application:           `$basename $application`"
+            display_msg "Task:                  `$basename $task` "
             display_msg ''
             display_msg "Application path:      $application"
             display_msg "Task path:             $task"
