@@ -24,7 +24,7 @@
     RUN apt-get install -qy --force-yes transmission-daemon
 
     # copy
-    COPY "root/etc/transmission-daemon" "/root/.config/transmission-daemon"
+    COPY "fs/etc/transmission-daemon" "/root/.config/transmission-daemon"
 
     # expose
     EXPOSE 9091
