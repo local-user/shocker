@@ -5,38 +5,43 @@
 ###Overview
 an easier way to share random app(s) using docker
 
-
 ###Usage
-
 shocker [export|import|list|remove|shock] option
 
-shocker example usage:
-
-- shocker export {application} {path/export.tar.gz}
-- shocker import {path/application.tar.gz}
-- shocker list
-- shocker remove {application}
-- shocker shock  {application} {task}
+###Example usage:
+- `shocker export {application} {path/export.tar.gz}`
+- `shocker import {path/application.tar.gz}`
+- `shocker list`
+- `shocker remove {application}`
+- `shocker shock  {application} {task}`
 
 
 ###Extra
 
-#####Repository
+#####Config
+- `shocker`
+- `shocker/app`
+- `shocker/app/{application.tar.gz}`
+- `shocker/app/{application.tar.gz}/{extracted-resources-*}`
+- `shocker/run`
+- `shocker/run/{application.tar.gz}`
+- `shocker/run/{application.tar.gz}/{runtime-resources-*}`
 
-- bin
-- bin/shocker
-- extra
-- extra/os
-- extra/os/{build-script}
-- src
-- src/{application.tar.gz}/about
-- src/{application.tar.gz}/about/README.md
-- src/{application.tar.gz}
-- src/{application.tar.gz}/bin
-- src/{application.tar.gz}/bin/{task}
-- src/{application.tar.gz}/docker
-- src/{application.tar.gz}/docker/{docker-resources}
-- src/{application.tar.gz}/skel
-- src/{application.tar.gz}/skel/{config-resources}
+#####Repository
+- `bin`
+- `bin/shocker`
+- `extra`
+- `extra/os`
+- `extra/os/{build-script}`
+- `src`
+- `src/{application.tar.gz}/about`
+- `src/{application.tar.gz}/about/README.md`
+- `src/{application.tar.gz}`
+- `src/{application.tar.gz}/bin`
+- `src/{application.tar.gz}/bin/{task}`
+- `src/{application.tar.gz}/docker`
+- `src/{application.tar.gz}/docker/{docker-resources-*}`
+- `src/{application.tar.gz}/skel`
+- `src/{application.tar.gz}/skel/{config-resources-*}`
 
 
