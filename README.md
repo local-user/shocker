@@ -8,7 +8,7 @@ an easier way to share random app(s) using docker
 ###Usage
 shocker [export|import|list|remove|shock] option
 
-###Example usage:
+###Example usage
 - `shocker export {application} {path/export.tar.gz}`
 - `shocker import {path/application.tar.gz}`
 - `shocker list`
@@ -16,7 +16,7 @@ shocker [export|import|list|remove|shock] option
 - `shocker shock  {application} {task}`
 
 
-###Extra
+###Folder structure
 
 #####Config
 - `shocker`
