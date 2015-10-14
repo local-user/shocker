@@ -1,29 +1,27 @@
 #shocker
-##shell + docker = shocker
+##SHELL + Docker = Shocker
 
 
-###overview
+###Overview
 an easier way to share random app(s) using docker
 
 
-###usage
+###Usage
 
 shocker [export|import|list|remove|shock] option
 
 shocker example usage:
 
-- shocker export {application} {/path/to/export.tar.gz}
-- shocker import {/path/to/application.tar.gz}
+- shocker export {application} {path/export.tar.gz}
+- shocker import {path/application.tar.gz}
 - shocker list
 - shocker remove {application}
 - shocker shock  {application} {task}
 
 
-###extra
+###Extra
 
-#####repo
-
-Repository contains files required to build application.
+#####Repository
 
 - bin
 - bin/shocker
@@ -31,16 +29,14 @@ Repository contains files required to build application.
 - extra/os
 - extra/os/{build-script}
 - src
-- src/{application}/about
-- src/{application}/about/README.md
-- src/{application}
-- src/{application}/bin
-- src/{application}/bin/{task}
-- src/{application}/docker
-- src/{application}/docker/{docker-resources}
-
-
-####operating system(s)
-- arch linux
+- src/{application.tar.gz}/about
+- src/{application.tar.gz}/about/README.md
+- src/{application.tar.gz}
+- src/{application.tar.gz}/bin
+- src/{application.tar.gz}/bin/{task}
+- src/{application.tar.gz}/docker
+- src/{application.tar.gz}/docker/{docker-resources}
+- src/{application.tar.gz}/skel
+- src/{application.tar.gz}/skel/{config-resources}
 
 
