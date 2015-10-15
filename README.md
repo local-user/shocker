@@ -42,7 +42,7 @@ shocker [export|import|list|remove|shock] option
 - `src/{application.tar.gz}/docker`
 - `src/{application.tar.gz}/docker/{docker-resources-*}`
 - `src/{application.tar.gz}/skel`
-- `src/{application.tar.gz}/skel/{config-resources-*}`
+- `src/{application.tar.gz}/skel/{runtime-resources-*}`
 
 #####Shared
 - `/media`
