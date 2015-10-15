@@ -201,6 +201,32 @@
         }
 
         #
+        #   cmd_reset - reset application runtime resources
+        #
+        function cmd_reset() {
+
+            # about
+            display_msg ''
+            display_msg "Application:           `$basename $application`"
+            display_msg "Task:                  reset"
+            display_msg ''
+            display_msg "Application path:      $application"
+            display_msg ''
+
+            # ? application
+            [ -z "$application" ]                           && \
+                display_error "Application not specified"   && \
+                $exit 2
+
+            # reset
+            $cp -r --verbose -i "$application/skel/"* "$run";
+
+            # return
+            return 0
+
+        }
+
+        #
         #   cmd_shock - shock application task
         #
         function cmd_shock() {
@@ -252,7 +278,7 @@
         function display_help() {
             $echo    ""
             $echo    ""
-            $echo -e "\t$script_name: $script_name [export|import|list|remove|shock] option"
+            $echo -e "\t$script_name: $script_name [export|import|list|remove|reset|shock] option"
             $echo    ""
             $echo    ""
             $echo -e "\t\tOverview:"
@@ -287,8 +313,11 @@
             $echo -e "\t\t\t# List application(s)."
             $echo -e "\t\t\t-$ $script_name list"
             $echo -e "\t\t\t"
-            $echo -e "\t\t\t# Remove application(s)."
+            $echo -e "\t\t\t# Remove application."
             $echo -e "\t\t\t-$ $script_name remove template"
+            $echo -e "\t\t\t"
+            $echo -e "\t\t\t# Reset application to import config."
+            $echo -e "\t\t\t-$ $script_name reset template"
             $echo    ""
             $echo    ""
             return 0
@@ -298,7 +327,7 @@
         #   display_usage - display usage
         #
         function display_usage() {
-            $echo "$script_name: $script_name [export|import|list|remove|shock] option"
+            $echo "$script_name: $script_name [export|import|list|remove|reset|shock] option"
             return 0
         }
 
@@ -362,6 +391,27 @@
 
         }
 
+        #
+        #   set_run - set run
+        #
+        function set_run () {
+
+                     # find & set
+                     result_count=$( $find "$script_config_run" -maxdepth 1 -name *"$1"* -type d | wc -l )
+            if   [ "$result_count" -eq 1 ]; then
+                run=$( $find "$script_config_run" -maxdepth 1 -name *"$1"* -type d )
+            elif [ "$result_count" -gt 1 ]; then
+                display_error "Multiple applications found matching '$1'"
+                $exit 2
+            else
+                display_error "No applications found matching '$1'"
+                $exit 2
+            fi
+
+            # return
+            return 0
+
+        }
         #
         #   set_task - set task
         #
@@ -455,6 +505,13 @@
                 set_application "$1"
                 shift
                 cmd_remove
+                ;;
+            reset)
+                shift
+                set_application "$1"
+                set_run "$1"
+                shift
+                cmd_reset
                 ;;
             *)
                 display_usage

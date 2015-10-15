@@ -6,13 +6,14 @@
 an easier way to share random app(s) using docker
 
 ###Usage
-shocker [export|import|list|remove|shock] option
+shocker [export|import|list|remove|reset|shock] option
 
 ###Example usage
 - `shocker export {application} {path/export.tar.gz}`
 - `shocker import {path/application.tar.gz}`
 - `shocker list`
 - `shocker remove {application}`
+- `shocker reset {application}`
 - `shocker shock  {application} {task}`
 
 
