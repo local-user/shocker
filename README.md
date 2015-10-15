@@ -6,7 +6,7 @@
 an easier way to share random app(s) using docker
 
 ###Usage
-shocker [export|import|list|remove|reset|shock] option
+shocker [docker|export|import|list|remove|reset|shock] option
 
 ###Example usage
 - `shocker docker {docker-argument(s)}`
