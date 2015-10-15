@@ -470,14 +470,6 @@
 
         # function
         case "$1" in
-            shock)
-                shift
-                set_application "$1"
-                shift
-                set_task "$1"
-                shift
-                cmd_shock
-                ;;
             export|-e)
                 shift
                 set_application "$1"
@@ -512,6 +504,14 @@
                 set_run "$1"
                 shift
                 cmd_reset
+                ;;
+            shock)
+                shift
+                set_application "$1"
+                shift
+                set_task "$1"
+                shift
+                cmd_shock
                 ;;
             *)
                 display_usage
