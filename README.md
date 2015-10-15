@@ -44,4 +44,14 @@ shocker [export|import|list|remove|shock] option
 - `src/{application.tar.gz}/skel`
 - `src/{application.tar.gz}/skel/{config-resources-*}`
 
+#####Shared
+- `/media`
+- `/media/download/{download-*}`
+- `/media/music/{music-*}`
+- `/media/picture/{picture-*}`
+- `/media/video/{video-*}`
 
+###Warning
+- Proof of concept only.
+- Do not use for anything other than demonstration.
+- Use at your own risk.
