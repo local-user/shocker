@@ -20,7 +20,7 @@ shocker [docker|export|import|list|remove|reset|shock] option
 
 ###Folder structure
 
-#####Config
+######Config
 - `shocker`
 - `shocker/app`
 - `shocker/app/{application.tar.gz}`
@@ -29,7 +29,7 @@ shocker [docker|export|import|list|remove|reset|shock] option
 - `shocker/run/{application.tar.gz}`
 - `shocker/run/{application.tar.gz}/{runtime-resources-*}`
 
-#####Repository
+######Repository
 - `bin`
 - `bin/shocker`
 - `extra`
@@ -46,7 +46,7 @@ shocker [docker|export|import|list|remove|reset|shock] option
 - `src/{application.tar.gz}/skel`
 - `src/{application.tar.gz}/skel/{runtime-resources-*}`
 
-#####Shared
+######Shared
 - `/media`
 - `/media/download/{download-*}`
 - `/media/music/{music-*}`
