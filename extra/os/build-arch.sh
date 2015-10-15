@@ -16,6 +16,29 @@
     #   variable(s)
     #
     hostname='shocker'
+    os='arch-linux'
+
+
+
+    #
+    #   start?
+    #
+    read -p "Start '$os' build [y/n]: " choice
+    case "$choice" in 
+        y|Y )
+            echo "Build starting."
+            ;;
+        n|N )
+            echo "Build exiting."
+            exit 2
+            ;;
+        * )
+            echo "Invalid selection."
+            echo "Build exiting."
+            exit 2
+            ;;
+    esac
+    echo ""
 
 
 
@@ -24,28 +47,7 @@
     #
 
         #
-        #   Start?
-        #
-        read -p "Start Arch Build [y/n]: " choice
-        case "$choice" in 
-            y|Y )
-                echo "Build starting."
-                ;;
-            n|N )
-                echo "Build exiting."
-                exit 2
-                ;;
-            * )
-                echo "Invalid selection."
-                echo "Build exiting."
-                exit 2
-                ;;
-        esac
-        echo ""
-
-
-        #
-        #   Set Hostname
+        #   set hostname
         #
         read -p "Hostname: " hostname
         echo $hostname > /etc/hostname
@@ -53,7 +55,7 @@
 
 
         #
-        #   Base Package(s)
+        #   base package(s)
         #
         echo "Installing dependencies:"
         pacman -Syu --noconfirm docker git vim tree
@@ -65,22 +67,22 @@
 
 
         #
-        #   Enable Docker
+        #   enable docker
         #
         systemctl enable docker.service
-
-
-        #
-        #   Restart
-        #
-        echo ''
-        echo 'Finished. Restart required.'
-
 
     #
     #   build
     #   - end
     #
+
+
+
+    #
+    #   restart
+    #
+    echo ''
+    echo 'Finished. Restart required.'
 
 
 
