@@ -21,6 +21,7 @@
     cp='cp'
     chmod='chmod'
     dirname='dirname'
+    docker='docker'
     echo='echo'
     exit='exit'
     find='find'
@@ -58,6 +59,35 @@
     #   function(s)
     #
     #
+
+        #
+        #   cmd_docker - docker $@
+        #
+        function cmd_docker() {
+
+            # about
+            display_msg ''
+            display_msg 'Task:                  docker'
+            display_msg ''
+            display_msg "Config path:           $script_config"
+            display_msg "Repository path:       $script_repo"
+            display_msg ''
+
+            # arg(s)
+            case "$#" in
+                0)  $docker ps
+                    display_msg ''
+                    $docker images
+                    ;;
+                *)  $docker $@
+                    ;;
+            esac
+            display_msg ''
+
+            # return
+            return 0
+
+        }
 
         #
         #   cmd_export - export app (.tar.gz)
@@ -278,7 +308,7 @@
         function display_help() {
             $echo    ""
             $echo    ""
-            $echo -e "\t$script_name: $script_name [export|import|list|remove|reset|shock] option"
+            $echo -e "\t$script_name: $script_name [docker|export|import|list|remove|reset|shock] option"
             $echo    ""
             $echo    ""
             $echo -e "\t\tOverview:"
@@ -327,7 +357,7 @@
         #   display_usage - display usage
         #
         function display_usage() {
-            $echo "$script_name: $script_name [export|import|list|remove|reset|shock] option"
+            $echo "$script_name: $script_name [docker|export|import|list|remove|reset|shock] option"
             return 0
         }
 
@@ -470,6 +500,10 @@
 
         # function
         case "$1" in
+            docker|-d)
+                shift
+                cmd_docker $@
+                ;;
             export|-e)
                 shift
                 set_application "$1"
