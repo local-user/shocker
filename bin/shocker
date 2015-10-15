@@ -433,6 +433,11 @@
             elif [ "$result_count" -gt 1 ]; then
                 display_error "Multiple applications found matching '$1'"
                 $exit 2
+            fi
+
+            # default
+            if [ ! -z "$application" ]; then
+                run="$script_config_run/`$basename $application`"
             else
                 display_error "No applications found matching '$1'"
                 $exit 2
