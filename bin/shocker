@@ -190,12 +190,21 @@
         #
         function cmd_list() {
 
-            # list
+            # display
             display_msg '|'
             $echo "| $script_name"
-            $tree --dirsfirst -C -l -L 4 --noreport "$script_config_app"    | \
-                $tail -n +2
-            display_msg ''
+
+            # file count
+            file_count=$(ls "$script_config_app" | wc -l)
+
+            # ? display
+            if [ "$file_count" -gt 0 ]; then
+                $tree --dirsfirst -C -l -L 4 --noreport "$script_config_app"    | \
+                    $tail -n +2
+                display_msg ''
+            else
+                display_msg '|'
+            fi
 
             # return
             return 0
