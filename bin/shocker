@@ -26,6 +26,7 @@
     exit='exit'
     find='find'
     mkdir='mkdir'
+    mktemp='mktemp'
     pwd='pwd'
     realpath='realpath'
     rm='rm'
@@ -90,15 +91,34 @@
                 display_error "Application not specified"   && \
                 $exit 2
 
-            # variable(s)
-            src="$application"
-            dir="$src"
-            dst=$( $realpath $archive_export )
-            nam=$( $basename $application )
+            # var
+            name=$( $basename $application )
+            app="$application"
+            run="$script_config_run/$name"
+            working=$( $mktemp -d )
+            archive=$( $realpath $archive_export )
 
-            # archive
-            $cd "$dir"
-            $tar -zcvf "$dst" *
+            # | prepare
+
+                # working
+                cd "$working"
+
+                # copy - app
+                $cp -r "$app"/* .
+
+                # remove - skel
+                test -d "skel" && $rm -r "skel"
+
+                # copy - run => skel
+                $cp -r "$run" "skel"
+
+                # archive
+                $tar -zcvf "$archive" *
+
+                # cleanup
+                $rm -r "$working"
+
+            # prepare |
 
             # return
             return 0
