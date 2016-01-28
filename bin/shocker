@@ -65,14 +65,6 @@
         #
         function cmd_docker() {
 
-            # about
-            display_msg ''
-            display_msg 'Task:                  docker'
-            display_msg ''
-            display_msg "Config path:           $script_config"
-            display_msg "Repository path:       $script_repo"
-            display_msg ''
-
             # arg(s)
             case "$#" in
                 0)  $docker ps
@@ -82,7 +74,6 @@
                 *)  $docker $@
                     ;;
             esac
-            display_msg ''
 
             # return
             return 0
@@ -105,19 +96,9 @@
             dst=$( $realpath $archive_export )
             nam=$( $basename $application )
 
-            # about
-            display_msg ''
-            display_msg "Application:           $nam"
-            display_msg 'Task:                  export'
-            display_msg ''
-            display_msg "Application path:      $src"
-            display_msg "Archive path:          $dst"
-            display_msg ''
-
             # archive
             $cd "$dir"
             $tar -zcvf "$dst" *
-            display_msg ''
 
             # return
             return 0
@@ -149,16 +130,6 @@
             [ ! -e "$dst" ]                                         && \
                 display_error "Unable to write application folder"  && \
                 $exit 2
-
-            # about
-            display_msg ''
-            display_msg "Application:           `$basename $dst`"
-            display_msg "Task:                  import"
-            display_msg ''
-            display_msg "Archive path:          $src"
-            display_msg "Config path:           $cnf"
-            display_msg "Destination path:      $dst"
-            display_msg ''
 
             # extract
             $tar -xvzf "$src" -C "$dst"
@@ -217,14 +188,6 @@
         #
         function cmd_remove() {
 
-            # about
-            display_msg ''
-            display_msg "Application:           `$basename $application`"
-            display_msg "Task:                  remove"
-            display_msg ''
-            display_msg "Application path:      $application"
-            display_msg ''
-
             # ? application
             [ -z "$application" ]                           && \
                 display_error "Application not specified"   && \
@@ -243,14 +206,6 @@
         #   cmd_reset - reset application runtime resources
         #
         function cmd_reset() {
-
-            # about
-            display_msg ''
-            display_msg "Application:           `$basename $application`"
-            display_msg "Task:                  reset"
-            display_msg ''
-            display_msg "Application path:      $application"
-            display_msg ''
 
             # ? application
             [ -z "$application" ]                           && \
@@ -275,20 +230,35 @@
                 display_error "Task not specified"  && \
                 $exit 2
 
-            # display
-            display_msg ''
-            display_msg "Application:           `$basename $application`"
-            display_msg "Task:                  `$basename $task` "
-            display_msg ''
-            display_msg "Application path:      $application"
-            display_msg "Task path:             $task"
-            display_msg ''
-
             # shock
             $task
 
-            # display
-            display_msg ''
+            # return
+            return 0
+
+        }
+
+        #
+        #   display - display set variable(s)
+        #
+        function display() {
+
+                                                # display
+                                                display_msg ''
+            test ! -z "$1"              &&      display_msg "Command:               $1"                         \
+                                        &&      display_msg ''
+            test ! -z "$application"    &&      display_msg "Application:           `$basename $application`"
+            test ! -z "$application"    &&      display_msg "Application path:      $application"               \
+                                        &&      display_msg ''
+            test ! -z "$task"           &&      display_msg "Task:                  `$basename $task` "
+            test ! -z "$task"           &&      display_msg "Task path:             $task"                      \
+                                        &&      display_msg ''
+            test ! -z "$archive"        &&      display_msg "Archive:               `$basename $archive` "
+            test ! -z "$archive"        &&      display_msg "Archive path:          $archive"                   \
+                                        &&      display_msg ''
+            test ! -z "$archive_export" &&      display_msg "Archive export:        `$basename $archive_export` "
+            test ! -z "$archive_export" &&      display_msg "Archive export path:   $archive_export"            \
+                                        &&      display_msg ''
 
             # return
             return 0
@@ -517,6 +487,7 @@
         case "$1" in
             docker|-d)
                 shift
+                display "docker"
                 cmd_docker $@
                 ;;
             export|-e)
@@ -525,6 +496,7 @@
                 shift
                 set_archive_export "$1"
                 shift
+                display "export"
                 cmd_export
                 ;;
             help|-h)
@@ -535,6 +507,7 @@
                 shift
                 set_archive "$1"
                 shift
+                display "import"
                 cmd_import
                 ;;
             list|-l)
@@ -545,6 +518,7 @@
                 shift
                 set_application "$1"
                 shift
+                display "remove"
                 cmd_remove
                 ;;
             reset)
@@ -552,6 +526,7 @@
                 set_application "$1"
                 set_run "$1"
                 shift
+                display "reset"
                 cmd_reset
                 ;;
             shock)
@@ -560,6 +535,7 @@
                 shift
                 set_task "$1"
                 shift
+                display "shock"
                 cmd_shock
                 ;;
             *)
