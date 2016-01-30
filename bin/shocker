@@ -138,7 +138,7 @@
 
             # ? archive mime
             if ! file --mime-type "$archive" | grep -q 'application/gzip'; then
-               display_error "Archive is a not a valid 'application/gzip'"
+               display_error "Archive is a not a valid 'gzip'"
                exit 2
             fi
 
