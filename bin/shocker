@@ -13,6 +13,7 @@
 
 
 
+
     #
     #   command(s)
     #
@@ -134,6 +135,12 @@
             [ -z "$archive" ]                               && \
                 display_error "Archive not specified"       && \
                 $exit 2
+
+            # ? archive mime
+            if ! file --mime-type "$archive" | grep -q 'application/gzip'; then
+               display_error "Archive is a not a valid 'application/gzip'"
+               exit 2
+            fi
 
             # variable(s)
             src="$archive"                                      # source
@@ -526,6 +533,7 @@
     #   logic
     #   --end
     #
+
 
 
 
