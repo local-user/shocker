@@ -5,6 +5,16 @@
 ###Overview
 an easier way to share random app(s) using docker
 
+###Application(s)
+- `couchpotato.ubuntu-trusty.git.tar.gz`
+- `nzbget.ubuntu-trusty.ppa.tar.gz`
+- `sabnzbdplus.ubuntu-trusty.ppa.tar.gz`
+- `sonarr.ubuntu-trusty.ppa.tar.gz`
+- `transmission.ubuntu-vivid.ppa.tar.gz`
+
+Application(s) provided by third party(s) and not created by local-user.
+
+
 ###Usage
 shocker [docker|export|import|list|remove|reset|shock] option
 
