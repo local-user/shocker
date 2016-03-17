@@ -59,6 +59,6 @@ shocker [docker|export|import|list|remove|reset|shock] option
 - `/media`
 
 ###Warning
-- Built with bipolar.
+- Built on request.
+- Lacks extensive testing.
 - Proof of concept only.
-- Use at your own risk.
