@@ -31,13 +31,13 @@ shocker [docker|export|import|list|remove|reset|shock] option
 ###Folder structure
 
 ######Config
-- `shocker`
-- `shocker/app`
-- `shocker/app/{application.tar.gz}`
-- `shocker/app/{application.tar.gz}/{extracted-resources-*}`
-- `shocker/run`
-- `shocker/run/{application.tar.gz}`
-- `shocker/run/{application.tar.gz}/{runtime-resources-*}`
+- `~/.config/shocker`
+- `~/.config/shocker/app`
+- `~/.config/shocker/app/{application.tar.gz}`
+- `~/.config/shocker/app/{application.tar.gz}/{extracted-resources-*}`
+- `~/.config/shocker/run`
+- `~/.config/shocker/run/{application.tar.gz}`
+- `~/.config/shocker/run/{application.tar.gz}/{runtime-resources-*}`
 
 ######Repository
 - `bin`
