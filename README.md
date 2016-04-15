@@ -7,6 +7,8 @@ an easier way to share random app(s) using docker
 
 ###Application(s)
 - `couchpotato.ubuntu-trusty.git.tar.gz`
+- `headphones.ubuntu-trusty.git.tar.gz`
+- `miv.ubuntu-trusty.git.no-persist.tar.gz`
 - `nzbget.ubuntu-trusty.ppa.tar.gz`
 - `sabnzbdplus.ubuntu-trusty.ppa.tar.gz`
 - `sonarr.ubuntu-trusty.ppa.tar.gz`
@@ -40,30 +42,23 @@ shocker [docker|export|import|list|remove|reset|shock] option
 - `~/.config/shocker/run/{application.tar.gz}/{runtime-resources-*}`
 
 ######Repository
+- `app`
+- `app/{application.tar.gz}`
+- `app/{application.tar.gz}/bin`
+- `app/{application.tar.gz}/bin/{shock-scripts-*}`
+- `app/{application.tar.gz}/docker`
+- `app/{application.tar.gz}/docker/{docker-resources-*}`
+- `app/{application.tar.gz}/skel`
+- `app/{application.tar.gz}/skel/{runtime-skeleton-*}`
 - `bin`
 - `bin/shocker`
-- `extra`
-- `extra/os`
-- `extra/os/{build-script}`
-- `src`
-- `src/{application.tar.gz}/about`
-- `src/{application.tar.gz}/about/README.md`
-- `src/{application.tar.gz}`
-- `src/{application.tar.gz}/bin`
-- `src/{application.tar.gz}/bin/{task}`
-- `src/{application.tar.gz}/docker`
-- `src/{application.tar.gz}/docker/{docker-resources-*}`
-- `src/{application.tar.gz}/skel`
-- `src/{application.tar.gz}/skel/{runtime-resources-*}`
+- `CONFIG.sh`
+- `README.md`
 
 ######Shared
 - `/media`
-- `/media/download/{download-*}`
-- `/media/music/{music-*}`
-- `/media/picture/{picture-*}`
-- `/media/video/{video-*}`
 
 ###Warning
+- Built on request.
+- Lacks extensive testing.
 - Proof of concept only.
-- Do not use for anything other than demonstration.
-- Use at your own risk.
