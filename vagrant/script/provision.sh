@@ -43,24 +43,6 @@
     # shocker |
 
 
-    # | ssh
-    if [ -d '/tmp/ssh' ]; then
-
-        # mv - tmp -> ssh
-        mv -v  '/tmp/ssh/'* '/root/.ssh'
-
-        # ownership
-        chown -R root:root '/root/.ssh'
-                      find '/root/.ssh' -type f -exec sudo chmod 600 {} \;
-                      find '/root/.ssh' -type d -exec sudo chmod 700 {} \;
-
-        # cleanup
-        rm -rf '/tmp/ssh'
-
-    fi
-    # ssh |
-
-
     # | systemctl
 
         # systemd - enable - rpcbind
