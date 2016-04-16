@@ -33,7 +33,7 @@
 
         # load app(s)
         for tar in `ls /tmp/app/*.tar.gz`; do 
-            /bin/shocker import "$tar"
+            echo /bin/shocker import "$tar"
         done
 
         # cleanup
@@ -45,19 +45,18 @@
 
     # | systemctl
 
-        # systemd - enable - rpcbind
-        systemctl enable rpcbind.service
-
-        # systemd - enable - docker
-        systemctl enable docker.service
-
-        # systemd - disable - NetworkManager
-        systemctl disable NetworkManager
-
-        # systemd - enable - dhcpcd
+        # systemd - dhcpcd
         systemctl enable dhcpcd
 
+        # systemd - docker
+        systemctl enable docker.service
+
     # systemctl |
+
+
+    # restart
+    echo '+ reboot'
+    shutdown -r now
 
 
 
