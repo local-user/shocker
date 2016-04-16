@@ -22,7 +22,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         # provision - copy - app / bin / ssh
         config.vm.provision "file", source: "../app", destination: "/tmp/app"
         config.vm.provision "file", source: "../bin", destination: "/tmp/bin"
-        config.vm.provision "file", source: "ssh",    destination: "/tmp/ssh"
 
         # provision - shell - bash
         config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
