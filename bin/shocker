@@ -446,7 +446,7 @@
     #
 
         # export -- enviromental(s)
-        export SHOCKER_APP=$scriot_config_app
+        export SHOCKER_APP=$script_config_app
         export SHOCKER_RUN=$script_config_run
 
         # ? - create -- config -- app
