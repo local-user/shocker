@@ -445,7 +445,11 @@
     #   logic
     #
 
-        # create -- config -- app
+        # export -- enviromental(s)
+        export SHOCKER_APP=$scriot_config_app
+        export SHOCKER_RUN=$script_config_run
+
+        # ? - create -- config -- app
         if [ ! -d "$script_config_app" ]; then
             $mkdir -p "$script_config_app"
             if [ $? -ne 0 ]; then
@@ -454,7 +458,7 @@
             fi
         fi
 
-        # create -- config -- run
+        # ? - create -- config -- run
         if [ ! -d "$script_config_run" ]; then
             $mkdir -p "$script_config_run"
             if [ $? -ne 0 ]; then
