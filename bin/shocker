@@ -154,9 +154,9 @@
             fi
 
             # variable(s)
-            src="$archive"                                      # source
-            dst="$config_app/`$basename $archive`"       # destination
-            cnf="$config_run/`$basename $archive`"       # config
+            src="$archive"                              # source
+            dst="$config_app/`$basename $archive`"      # destination
+            cnf="$config_run/`$basename $archive`"      # config
 
             # ? exists
             [ -e "$dst" ]                                   && \
@@ -185,7 +185,8 @@
 
                 # skeleton
                 [ -d "$dst/skel" ]                      && \
-                    $cp -r "$dst/skel/"* "$cnf"
+                    [[ $(ls -A "$dst/skel") ]]          && \
+                        $cp -r "$dst/skel/"* "$cnf"
 
             fi
 
