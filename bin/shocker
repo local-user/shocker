@@ -210,7 +210,6 @@
             if [ "$file_count" -gt 0 ]; then
                 $tree --dirsfirst -C -l -L 4 --noreport "$config_app"    | \
                     $tail -n +2
-                display_msg ''
             else
                 display_msg '|'
             fi
